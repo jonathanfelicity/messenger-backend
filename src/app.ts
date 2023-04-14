@@ -70,7 +70,7 @@ class App {
     const options = {
       swaggerDefinition: {
         info: {
-          title: 'REST API',
+          title: 'Messenger api',
           version: '1.0.0',
           description: 'Example docs',
         },
