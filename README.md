@@ -1,4 +1,6 @@
-<img src="./logo.png">
+<div align="center">
+  <img src="./logo.png">
+</div>
 
 # Messenger API
 Messenger API is a TypeScript, TypeORM, MySQL, and Express API server for building messaging applications. It comes with pre-built modules for user authentication, logging, and request validation, making it a solid foundation for building scalable and secure messaging applications.
