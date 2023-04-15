@@ -20,6 +20,8 @@ class OrdersRoute implements Routes {
     this.router.post(`${this.path}`, authMiddleware, validationMiddleware(CreateOrderDto, 'body'), this.ordersController.createOrder);
     this.router.put(`${this.path}/:id(\\d+)`, authMiddleware, validationMiddleware(CreateOrderDto, 'body', true), this.ordersController.updateOrder);
     this.router.delete(`${this.path}/:id(\\d+)`, authMiddleware, this.ordersController.deleteOrder);
+    this.router.put(`${this.path}/:id(\\d+)/status`, authMiddleware, this.ordersController.updateOrderStatus);
+    this.router.put(`${this.path}/:id(\\d+)`, authMiddleware, validationMiddleware(CreateOrderDto, 'body', true), this.ordersController.updateOrder);
   }
 }
 
