@@ -70,9 +70,10 @@ class App {
     const options = {
       swaggerDefinition: {
         info: {
-          title: 'Messenger api',
+          title: 'Messenger(api) Documentation',
           version: '1.0.0',
-          description: 'Example docs',
+          description:
+            'Messenger is a fulfillment and last-mile delivery company offering end-to-end logistics and supply chain services, including warehousing, order processing, on-demand delivery, and 3rd-party logistics services for individuals and businesses across Nigeria',
         },
       },
       apis: ['swagger.yaml'],
