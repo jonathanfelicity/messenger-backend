@@ -14,12 +14,6 @@ export class OrderEntity extends BaseEntity implements Order {
   @ManyToOne(() => UserEntity, user => user.id)
   customer: UserEntity;
 
-  // @Column()
-  // riderId: number;
-
-  // @ManyToOne(() => UserEntity, user => user.id)
-  // rider: UserEntity;
-
   @Column()
   pickupAddress: string;
 

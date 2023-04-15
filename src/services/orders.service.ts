@@ -1,7 +1,10 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository, getCustomRepository } from 'typeorm';
 import { HttpException } from '@exceptions/HttpException';
 import { Order } from '@interfaces/orders.interface';
 import { OrderEntity } from '@entities/orders.entity';
+import { OrderRequestEnum } from '@/enums/order.request.enum';
+import OrderRequestService from './orders.request.service';
+
 import { isEmpty } from '@utils/util';
 
 @EntityRepository()
@@ -15,27 +18,23 @@ class OrderService extends Repository<OrderEntity> {
 
   public async findPendingOrders(): Promise<Order[]> {
     const orders: Order[] = await OrderEntity.find({
-      where: { status: 'pending' },
+      where: { status: 'created' },
     });
     return orders;
   }
 
-  // public async findAssignedOrders(): Promise<Order[]> {
-  //   const orders: Order[] = await OrderEntity.find({
-  //     where: { status: 'assigned' },
-  //   });
-  //   return orders;
-  // }
+  public async findAssignedOrders(): Promise<Order[]> {
+    const orders: Order[] = await OrderEntity.find({
+      where: { status: 'assigned' },
+    });
+    return orders;
+  }
 
-  public async updateOrderStatus(orderId: number, status: OrderStatus): Promise<Order> {
-    if (!status) {
-      throw new HttpException(400, 'Status is empty');
-    }
+  public async updateOrderStatus(orderId: number, status: string): Promise<Order> {
+    if (isEmpty(status)) throw new HttpException(400, 'Status is empty');
 
     const findOrder: Order = await OrderEntity.findOne({ where: { id: orderId } });
-    if (!findOrder) {
-      throw new HttpException(409, "Order doesn't exist");
-    }
+    if (!findOrder) throw new HttpException(409, "Order doesn't exist");
 
     findOrder.status = status;
     await findOrder.save();
@@ -57,10 +56,21 @@ class OrderService extends Repository<OrderEntity> {
     return findOrder;
   }
 
-  public async createOrder(orderData: Order): Promise<Order> {
+  public async createOrder(orderData: Order, riderId: number): Promise<Order> {
     if (isEmpty(orderData)) throw new HttpException(400, 'orderData is empty');
 
     const createOrderData: Order = await OrderEntity.create(orderData).save();
+
+    // Create OrderRequest service
+    const orderRequestService = getCustomRepository(OrderRequestService);
+
+    const orderRequestData = {
+      riderId,
+      status: OrderRequestEnum.Pending,
+      orderId: createOrderData.id,
+    };
+
+    await orderRequestService.createOrderRequest(orderRequestData);
 
     return createOrderData;
   }
