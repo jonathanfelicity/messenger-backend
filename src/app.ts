@@ -80,7 +80,7 @@ class App {
     };
 
     const specs = swaggerJSDoc(options);
-    this.app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+    this.app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(specs));
   }
 
   private initializeErrorHandling() {

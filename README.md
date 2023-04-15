@@ -45,7 +45,7 @@ Start the server in development mode.
 npm run dev
 ```
 
-Access the API documentation at http://localhost:8080/api-docs in your browser.
+Access the API documentation at http://localhost:3000/api/v1/docs in your browser.
 ## Usage
 To use the API, you need to have an authenticated user. To authenticate a user, send a POST request to the api/v1/auth/login endpoint with the user's credentials in the request body. The API will return a JWT token that you can use to make requests to the protected endpoints.
 
