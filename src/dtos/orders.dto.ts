@@ -15,4 +15,7 @@ export class CreateOrderDto {
 
   @IsNumber()
   public totalAmount: number;
+
+  @IsString()
+  public status: string;
 }
