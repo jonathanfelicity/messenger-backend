@@ -4,6 +4,7 @@ import { CreateUserDto } from '@dtos/users.dto';
 import { Routes } from '@interfaces/routes.interface';
 import validationMiddleware from '@middlewares/validation.middleware';
 
+
 class UsersRoute implements Routes {
   public path = '/users';
   public router = Router();

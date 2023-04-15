@@ -5,8 +5,10 @@ import UsersRoute from '@routes/users.route';
 import OrdersRoute from '@/routes/orders.route';
 import validateEnv from '@utils/validateEnv';
 
+// Validate environment variables
 validateEnv();
 
-const app = new App([new IndexRoute(), new UsersRoute(), new AuthRoute(), new OrdersRoute()]);
-
+// Create an instance of the App class and start listening for incoming requests
+const routes = [new IndexRoute(), new UsersRoute(), new AuthRoute(), new OrdersRoute()];
+const app = new App(routes);
 app.listen();
