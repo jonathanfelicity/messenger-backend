@@ -15,23 +15,27 @@ class OrderService extends Repository<OrderEntity> {
 
   public async findPendingOrders(): Promise<Order[]> {
     const orders: Order[] = await OrderEntity.find({
-      where: { status: 'created' },
+      where: { status: 'pending' },
     });
     return orders;
   }
 
-  public async findAssignedOrders(): Promise<Order[]> {
-    const orders: Order[] = await OrderEntity.find({
-      where: { status: 'assigned' },
-    });
-    return orders;
-  }
+  // public async findAssignedOrders(): Promise<Order[]> {
+  //   const orders: Order[] = await OrderEntity.find({
+  //     where: { status: 'assigned' },
+  //   });
+  //   return orders;
+  // }
 
-  public async updateOrderStatus(orderId: number, status: string): Promise<Order> {
-    if (isEmpty(status)) throw new HttpException(400, 'Status is empty');
+  public async updateOrderStatus(orderId: number, status: OrderStatus): Promise<Order> {
+    if (!status) {
+      throw new HttpException(400, 'Status is empty');
+    }
 
     const findOrder: Order = await OrderEntity.findOne({ where: { id: orderId } });
-    if (!findOrder) throw new HttpException(409, "Order doesn't exist");
+    if (!findOrder) {
+      throw new HttpException(409, "Order doesn't exist");
+    }
 
     findOrder.status = status;
     await findOrder.save();
