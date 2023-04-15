@@ -19,7 +19,6 @@ import { User } from './users.interface';
  */
 export interface Order {
   status: string;
-  orderId: number;
   customerId: number;
   customer: User;
   riderId: number;
