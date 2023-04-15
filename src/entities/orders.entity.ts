@@ -29,7 +29,7 @@ export class OrderEntity extends BaseEntity implements Order {
   @Column()
   totalAmount: number;
 
-  @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.Created })
+  @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.Pending })
   status: OrderStatus;
 
   @Column()
