@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { OrdersController } from '@controllers/orders.controller';
+import OrdersController from '@controllers/orders.controller';
 import { CreateOrderDto } from '@dtos/orders.dto';
 import { Routes } from '@interfaces/routes.interface';
 import validationMiddleware from '@middlewares/validation.middleware';
