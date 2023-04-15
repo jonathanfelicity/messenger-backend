@@ -1,6 +1,7 @@
 import { User } from './users.interface';
 
 export interface Order {
+  status: string;
   id: number;
   customerId: number;
   customer: User;

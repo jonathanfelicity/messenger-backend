@@ -6,6 +6,39 @@ import { isEmpty } from '@utils/util';
 
 @EntityRepository()
 class OrderService extends Repository<OrderEntity> {
+  public async findOrderForLogistics(): Promise<Order[]> {
+    const orders: Order[] = await OrderEntity.find({
+      where: [{ status: 'created' }, { status: 'assigned' }],
+    });
+    return orders;
+  }
+
+  public async findPendingOrders(): Promise<Order[]> {
+    const orders: Order[] = await OrderEntity.find({
+      where: { status: 'created' },
+    });
+    return orders;
+  }
+
+  public async findAssignedOrders(): Promise<Order[]> {
+    const orders: Order[] = await OrderEntity.find({
+      where: { status: 'assigned' },
+    });
+    return orders;
+  }
+
+  public async updateOrderStatus(orderId: number, status: string): Promise<Order> {
+    if (isEmpty(status)) throw new HttpException(400, 'Status is empty');
+
+    const findOrder: Order = await OrderEntity.findOne({ where: { id: orderId } });
+    if (!findOrder) throw new HttpException(409, "Order doesn't exist");
+
+    findOrder.status = status;
+    await findOrder.save();
+
+    return findOrder;
+  }
+
   public async findAllOrders(): Promise<Order[]> {
     const orders: Order[] = await OrderEntity.find();
     return orders;
