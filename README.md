@@ -51,8 +51,3 @@ To use the API, you need to have an authenticated user. To authenticate a user, 
 
 Refer to the Swagger documentation for the list of available endpoints and their usage.
 
-## Contributing
-Contributions are welcome. To contribute, please follow the guidelines outlined in CONTRIBUTING.md.
-
-License
-Messenger API is licensed under the ISC license. See the LICENSE file for more details.
