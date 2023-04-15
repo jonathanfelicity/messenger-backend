@@ -7,21 +7,18 @@ import { User } from './users.interface';
  * @interface Order
  * @property {string} status - The status of the order (e.g. "pending", "in transit", "delivered").
  * @property {number} orderId - The unique identifier for the order.
- * @property {number} customerId - The unique identifier for the customer who placed the order.
- * @property {User} customer - The User object representing the customer who placed the order.
+ * @property {number} riderId - The unique identifier for the rider assigned to the order.
+ * @property {User} rider - The User object representing the rider assigned to the order.
  * @property {string} pickupAddress - The address where the items are to be picked up.
  * @property {string} deliveryAddress - The address where the items are to be delivered.
  * @property {number} totalAmount - The total amount charged for the order.
  * @property {Date} createdAt - The date and time when the order was created.
  * @property {Date} updatedAt - The date and time when the order was last updated.
  */
-export interface Order {
+export interface OrderRequest {
   status: string;
-  customerId: number;
-  customer: User;
-  pickupAddress: string;
-  deliveryAddress: string;
-  totalAmount: number;
+  riderId: number;
+  rider: User;
   createdAt: Date;
   updatedAt: Date;
 }

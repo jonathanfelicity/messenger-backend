@@ -1,6 +1,6 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { User } from '@interfaces/users.interface';
-import { UserRole } from '@/enums/users.role.enum';
+import { UserRoleEnum } from '@/enums/user.role.enum';
 import { IsNotEmpty } from 'class-validator';
 
 @Entity()
@@ -17,8 +17,8 @@ export class UserEntity extends BaseEntity implements User {
   @IsNotEmpty()
   password: string;
 
-  @Column({ type: 'enum', enum: UserRole, default: UserRole.Customer })
-  status: UserRole;
+  @Column({ type: 'enum', enum: UserRoleEnum, default: UserRoleEnum.Customer })
+  status: UserRoleEnum;
 
   @Column()
   @CreateDateColumn()
