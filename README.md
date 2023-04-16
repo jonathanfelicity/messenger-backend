@@ -4,6 +4,74 @@
 
 # Messenger API
 Messenger API is a TypeScript, TypeORM, MySQL, and Express API server for building messaging applications. It comes with pre-built modules for user authentication, logging, and request validation, making it a solid foundation for building scalable and secure messaging applications.
+```
+
+│
+├──📂 src
+│  ├──📂 config
+│  │  └── index.ts
+│  │
+│  ├──📂 controllers
+│  │  └── ...
+│  │
+│  ├──📂 dtos
+│  │  └── users.dto.ts
+│  │
+│  ├──📂 exceptions
+│  │  └── ...
+│  │
+│  ├──📂 http
+│  │  └── ...
+│  │
+│  ├──📂 interfaces
+│  │  └── ...
+│  │
+│  ├──📂 middlewares
+│  │  └── ...
+│  │
+│  ├──📂 models
+│  │  └── ...
+│  │
+│  ├──📂 routes
+│  │  └── ...
+│  │
+│  ├──📂 services
+│  │  └── ...
+│  │
+│  ├──📂 test
+│  │  └── ...
+│  │
+│  ├──📂 utils
+│  │  └── ...
+│  │
+│  ├── app.ts
+│  └── server.ts
+│
+├── .dockerignore
+├── .editorconfig
+├── .env.development.local
+├── .env.production.local
+├── .env.test.local
+├── .eslintignore
+├── .eslintrc
+├── .gitignore
+├── .huskyrc
+├── .lintstagedrc.json
+├── .prettierrc
+├── .swcrc
+├── docker-compose.yml
+├── Dockerfile.dev
+├── Dockerfile.prod
+├── ecosystem.config.js
+├── jest.config.js
+├── Makefile
+├── nginx.conf
+├── nodemon.json
+├── package-lock.json
+├── package.json
+├── swagger.yaml
+└── tsconfig.json
+```
 
 ## Features
 * TypeScript

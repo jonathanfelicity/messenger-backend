@@ -31,7 +31,7 @@ class OrderRequestController {
   public approveOrderRequest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const orderRequestId = Number(req.params.id);
-      const approveOrderRequestData: OrderRequest = await this.orderRequestService.approveOrderRequest(orderRequestId);
+      const approveOrderRequestData: OrderRequest = await this.orderRequestService.acceptOrderRequest(orderRequestId);
 
       res.status(200).json({ data: approveOrderRequestData, message: 'Order request approved' });
     } catch (error) {
