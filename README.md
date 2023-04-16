@@ -1,10 +1,12 @@
 <div align="center">
   <img src="./logo.png">
 </div>
-# 😎 Messenger API
-Messenger API is a TypeScript, TypeORM, MySQL, and Express API server for building messaging applications. It comes with pre-built modules for user authentication, logging, and request validation, making it a solid foundation for building scalable and secure messaging applications.
-```
 
+# Messenger API
+
+Messenger API is a TypeScript, TypeORM, MySQL, and Express API server for building messaging applications. It comes with pre-built modules for user authentication, logging, and request validation, making it a solid foundation for building scalable and secure messaging applications.
+
+```bash
 │
 ├──📂 src
 │  ├──📂 config
@@ -91,8 +93,11 @@ Messenger API is a TypeScript, TypeORM, MySQL, and Express API server for buildi
 
 ## Installation
 Clone the repository and navigate into it.
+
 ```bash
-git clone https://github.com/yourusername/messenger-api.git
+sudo apt install update
+sudo apt install unzip
+unzip messenger-api.zip
 cd messenger-api
 ```
 
@@ -117,4 +122,10 @@ Access the API documentation at http://localhost:3000/api/v1/docs in your browse
 To use the API, you need to have an authenticated user. To authenticate a user, send a POST request to the api/v1/auth/login endpoint with the user's credentials in the request body. The API will return a JWT token that you can use to make requests to the protected endpoints.
 
 Refer to the Swagger documentation for the list of available endpoints and their usage.
+
+## 🔑 STRIKING THE PERFECT BALANCE: Navigating API Design Trade-offs ⚖️🚀
+
+
+
+
 
