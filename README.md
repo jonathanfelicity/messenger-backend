@@ -6,10 +6,11 @@
 
 ## Table of Contents 📑
 
-- [Introduction](#introduction) 🌟
-- [Installation](#installation) 💻
-- [Usage](#usage) 🚀
-- [Navigating API Design Trade-offs](#design) 🎨
+- [Introduction](#introduction-🌟) 🌟
+  - [Features ](#features-🚚💬)🚚💬
+- [Installation](#installation-💻) 💻
+- [Usage](#usage-🚀) 🚀
+- [Navigating API Design Trade-offs](#🔑-striking-the-perfect-balance-navigating-api-design-trade-offs-⚖️🚀) 🎨
 
 ## Introduction 🌟
 
@@ -23,9 +24,10 @@ Messenger API is a TypeScript, TypeORM, MySQL, and Express API server for buildi
 * Order placement: Customers can place orders for delivery via the Messenger platform.
 * Order tracking: Customers can track the status of their orders in real-time.
 * Rider management: Messenger can manage a pool of riders to fulfill delivery requests.
-* Rider assignment: Messenger can assign the most suitable rider for each delivery request based on factors such as location, availability, and rating.
-* Order distribution: Messenger can distribute delivery requests to riders via an efficient algorithm that optimizes for factors such as distance, traffic, and time.
-* Real-time communication: Riders and customers can communicate with each other in real-time via a chat interface integrated into the Messenger platform.
+<!-- * Rider assignment: Messenger can assign the most suitable rider for each delivery request based on factors such as location, availability, and rating. -->
+* Order distribution: Messenger can distribute delivery requests to riders via an efficient algorithm that optimizes for factors.
+<!-- such as distance, traffic, and time. -->
+<!-- * Real-time communication: Riders and customers can communicate with each other in real-time via a chat interface integrated into the Messenger platform. -->
 * Third-party logistics integration: Messenger can integrate with third-party logistics providers to expand its delivery network and provide more delivery options to customers.
 
 ### Technical
@@ -71,6 +73,7 @@ npm run dev
 ```
 
 Access the API documentation at http://localhost:3000/api/v1/docs in your browser.
+
 ## Usage 🚀
 To use the API, you need to have an authenticated user. To authenticate a user, send a POST request to the api/v1/auth/login endpoint with the user's credentials in the request body. The API will return a JWT token that you can use to make requests to the protected endpoints.
 
