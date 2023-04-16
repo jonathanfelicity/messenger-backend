@@ -38,6 +38,5 @@ class OrderRequestController {
     }
   }
 }
-}
 
 export default OrderRequestController;

@@ -1,50 +1,32 @@
-import { EntityRepository, Repository, getCustomRepository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { HttpException } from '@exceptions/HttpException';
 import { Order } from '@interfaces/orders.interface';
 import { OrderEntity } from '@entities/orders.entity';
-import { OrderRequestEnum } from '@/enums/order.request.enum';
-import OrderRequestService from './orders.request.service';
-
 import { isEmpty } from '@utils/util';
 
 @EntityRepository()
 class OrderService extends Repository<OrderEntity> {
+  // Find methods
   public async findOrderForLogistics(): Promise<Order[]> {
-    const orders: Order[] = await OrderEntity.find({
+    return await OrderEntity.find({
       where: [{ status: 'created' }, { status: 'assigned' }],
     });
-    return orders;
   }
 
   public async findPendingOrders(): Promise<Order[]> {
-    const orders: Order[] = await OrderEntity.find({
-      where: { status: 'created' },
+    return await OrderEntity.find({
+      where: { status: 'pending' },
     });
-    return orders;
   }
 
   public async findAssignedOrders(): Promise<Order[]> {
-    const orders: Order[] = await OrderEntity.find({
+    return await OrderEntity.find({
       where: { status: 'assigned' },
     });
-    return orders;
-  }
-
-  public async updateOrderStatus(orderId: number, status: string): Promise<Order> {
-    if (isEmpty(status)) throw new HttpException(400, 'Status is empty');
-
-    const findOrder: Order = await OrderEntity.findOne({ where: { id: orderId } });
-    if (!findOrder) throw new HttpException(409, "Order doesn't exist");
-
-    findOrder.status = status;
-    await findOrder.save();
-
-    return findOrder;
   }
 
   public async findAllOrders(): Promise<Order[]> {
-    const orders: Order[] = await OrderEntity.find();
-    return orders;
+    return await OrderEntity.find();
   }
 
   public async findOrderById(orderId: number): Promise<Order> {
@@ -56,30 +38,31 @@ class OrderService extends Repository<OrderEntity> {
     return findOrder;
   }
 
-  public async createOrder(orderData: Order, riderId: number): Promise<Order> {
-    if (isEmpty(orderData)) throw new HttpException(400, 'orderData is empty');
+  public async createOrder(orderData: Order): Promise<Order> {
+    if (isEmpty(orderData)) {
+      throw new HttpException(400, 'orderData is empty');
+    }
 
-    const createOrderData: Order = await OrderEntity.create(orderData).save();
+    const order = await OrderEntity.create(orderData).save();
 
-    // Create OrderRequest service
-    const orderRequestService = getCustomRepository(OrderRequestService);
+    return order;
+  }
+  public async updateOrderStatus(orderId: number, status: string): Promise<Order> {
+    if (isEmpty(status)) throw new HttpException(400, 'Status is empty');
 
-    const orderRequestData = {
-      riderId,
-      status: OrderRequestEnum.Pending,
-      orderId: createOrderData.id,
-    };
+    const findOrder: Order = await this.findOrderById(orderId);
 
-    await orderRequestService.createOrderRequest(orderRequestData);
+    findOrder.status = status;
+    await findOrder.save();
 
-    return createOrderData;
+    return findOrder;
   }
 
+  // update method
   public async updateOrder(orderId: number, orderData: Order): Promise<Order> {
     if (isEmpty(orderData)) throw new HttpException(400, 'orderData is empty');
 
-    const findOrder: Order = await OrderEntity.findOne({ where: { id: orderId } });
-    if (!findOrder) throw new HttpException(409, "Order doesn't exist");
+    const findOrder: Order = await this.findOrderById(orderId);
 
     await OrderEntity.update(orderId, orderData);
 
@@ -87,11 +70,11 @@ class OrderService extends Repository<OrderEntity> {
     return updatedOrder;
   }
 
+  // Delete method
   public async deleteOrder(orderId: number): Promise<Order> {
     if (isEmpty(orderId)) throw new HttpException(400, 'OrderId is empty');
 
-    const findOrder: Order = await OrderEntity.findOne({ where: { id: orderId } });
-    if (!findOrder) throw new HttpException(409, "Order doesn't exist");
+    const findOrder: Order = await this.findOrderById(orderId);
 
     await OrderEntity.delete({ id: orderId });
     return findOrder;

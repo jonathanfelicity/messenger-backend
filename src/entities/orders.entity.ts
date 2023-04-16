@@ -1,7 +1,8 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Order } from '@interfaces/orders.interface';
 import { UserEntity } from './users.entity';
 import { OrderStatusEnum } from '@/enums/order.status.enum';
+import { OrderRequestEntity } from './orders.request.entity';
 
 @Entity()
 export class OrderEntity extends BaseEntity implements Order {
@@ -22,6 +23,9 @@ export class OrderEntity extends BaseEntity implements Order {
 
   @Column()
   totalAmount: number;
+
+  @OneToOne(() => OrderRequestEntity, orderRequest => orderRequest.order)
+  orderRequest: OrderRequestEntity[];
 
   @Column({ type: 'enum', enum: OrderStatusEnum, default: OrderStatusEnum.Pending })
   status: OrderStatusEnum;
