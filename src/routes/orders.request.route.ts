@@ -25,7 +25,7 @@ class OrderRequestRoute implements Routes {
 
     // Approve an order request
     this.router.put(
-      `${this.path}/:id(\\d+)/approve`,
+      `${this.path}/:id(\\d+)/accept`,
       authMiddleware, // requires authentication
       this.orderRequestController.approveOrderRequest, // handles the request
     );

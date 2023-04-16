@@ -3,25 +3,13 @@ import { HttpException } from '@exceptions/HttpException';
 import { Order } from '@interfaces/orders.interface';
 import { OrderEntity } from '@entities/orders.entity';
 import { isEmpty } from '@utils/util';
+import { OrderStatusEnum } from '@/enums/order.status.enum';
 
 @EntityRepository()
 class OrderService extends Repository<OrderEntity> {
-  // Find methods
-  public async findOrderForLogistics(): Promise<Order[]> {
-    return await OrderEntity.find({
-      where: [{ status: 'created' }, { status: 'assigned' }],
-    });
-  }
-
   public async findPendingOrders(): Promise<Order[]> {
     return await OrderEntity.find({
-      where: { status: 'pending' },
-    });
-  }
-
-  public async findAssignedOrders(): Promise<Order[]> {
-    return await OrderEntity.find({
-      where: { status: 'assigned' },
+      where: { status: OrderStatusEnum.Pending },
     });
   }
 

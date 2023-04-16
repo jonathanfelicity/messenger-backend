@@ -2,6 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { HttpException } from '@exceptions/HttpException';
 import { OrderRequest } from '@interfaces/orders.request.interface';
 import { OrderRequestEntity } from '@entities/orders.request.entity';
+import { OrderRequestEnum } from '@/enums/order.request.enum';
 import { isEmpty } from '@utils/util';
 
 @EntityRepository()
@@ -29,12 +30,12 @@ class OrderRequestService extends Repository<OrderRequestEntity> {
   }
 
   // Update methods
-  public async approveOrderRequest(orderRequestId: number): Promise<void> {
+  public async acceptOrderRequest(orderRequestId: number): Promise<void> {
     if (isEmpty(orderRequestId)) throw new HttpException(400, 'OrderRequestId is empty');
 
     const findOrderRequest: OrderRequest = await this.findOrderRequestById(orderRequestId);
 
-    findOrderRequest.status = 'approved';
+    findOrderRequest.status = OrderRequestEnum.Accepted;
     await findOrderRequest.save();
   }
 
@@ -43,7 +44,7 @@ class OrderRequestService extends Repository<OrderRequestEntity> {
 
     const findOrderRequest: OrderRequest = await this.findOrderRequestById(orderRequestId);
 
-    findOrderRequest.status = 'rejected';
+    findOrderRequest.status = OrderRequestEnum.Declined;
     await findOrderRequest.save();
   }
 

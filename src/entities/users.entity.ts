@@ -18,7 +18,7 @@ export class UserEntity extends BaseEntity implements User {
   password: string;
 
   @Column({ type: 'enum', enum: UserRoleEnum, default: UserRoleEnum.Customer })
-  status: UserRoleEnum;
+  role: UserRoleEnum;
 
   @Column()
   @CreateDateColumn()

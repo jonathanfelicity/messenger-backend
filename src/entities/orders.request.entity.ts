@@ -9,7 +9,7 @@ export class OrderRequestEntity extends BaseEntity implements OrderRequest {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: 0 })
+  @Column()
   riderId: number;
 
   @ManyToOne(() => UserEntity, user => user.id)

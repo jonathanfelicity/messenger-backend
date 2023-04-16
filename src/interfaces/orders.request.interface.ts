@@ -1,4 +1,5 @@
 import { User } from './users.interface';
+import { Order } from './orders.interface';
 
 /**
  * Represents an order for delivery, containing information such as pickup and delivery addresses,
@@ -10,8 +11,6 @@ import { User } from './users.interface';
  * @property {number} riderId - The unique identifier for the rider assigned to the order.
  * @property {User} rider - The User object representing the rider assigned to the order.
  * @property {string} pickupAddress - The address where the items are to be picked up.
- * @property {string} deliveryAddress - The address where the items are to be delivered.
- * @property {number} totalAmount - The total amount charged for the order.
  * @property {Date} createdAt - The date and time when the order was created.
  * @property {Date} updatedAt - The date and time when the order was last updated.
  */
@@ -19,6 +18,8 @@ export interface OrderRequest {
   status: string;
   riderId: number;
   rider: User;
+  orderId: number;
+  order: Order;
   createdAt: Date;
   updatedAt: Date;
 }
