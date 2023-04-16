@@ -15,14 +15,27 @@ class OrderRequestRoute implements Routes {
   }
 
   private initializeRoutes() {
+    // Create an order request
     this.router.post(
       `${this.path}`,
-      authMiddleware,
-      validationMiddleware(CreateOrderRequestDto, 'body'),
-      this.orderRequestController.createOrderRequest,
+      authMiddleware, // requires authentication
+      validationMiddleware(CreateOrderRequestDto, 'body'), // validates the request body
+      this.orderRequestController.createOrderRequest, // handles the request
     );
-    this.router.put(`${this.path}/:id(\\d+)/approve`, authMiddleware, this.orderRequestController.approveOrderRequest);
-    this.router.put(`${this.path}/:id(\\d+)/reject`, authMiddleware, this.orderRequestController.rejectOrderRequest);
+
+    // Approve an order request
+    this.router.put(
+      `${this.path}/:id(\\d+)/approve`,
+      authMiddleware, // requires authentication
+      this.orderRequestController.approveOrderRequest, // handles the request
+    );
+
+    // Reject an order request
+    this.router.put(
+      `${this.path}/:id(\\d+)/reject`,
+      authMiddleware, // requires authentication
+      this.orderRequestController.rejectOrderRequest, // handles the request
+    );
   }
 }
 

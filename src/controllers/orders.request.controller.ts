@@ -1,42 +1,43 @@
-import { Request, Response, NextFunction } from 'express';
-import { getCustomRepository } from 'typeorm';
-import { HttpException } from '@exceptions/HttpException';
+import { NextFunction, Request, Response } from 'express';
 import { OrderRequest } from '@/interfaces/orders.request.interface';
 import OrderRequestService from '@/services/orders.request.service';
+import { CreateOrderRequestDto } from '@/dtos/orders.request.dto';
 
 class OrderRequestController {
-  private orderRequestService = getCustomRepository(OrderRequestService);
+  public orderRequestService = new OrderRequestService();
 
-  public createOrderRequest = async (req: Request, res: Response, next: NextFunction) => {
+  public createOrderRequest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const { riderId, status, orderId } = req.body;
-      const orderRequestData: OrderRequest = { riderId, status, orderId };
+      const orderRequestData: CreateOrderRequestDto = req.body;
       const createOrderRequestData: OrderRequest = await this.orderRequestService.createOrderRequest(orderRequestData);
+
       res.status(201).json({ data: createOrderRequestData, message: 'Order request created' });
     } catch (error) {
-      next(new HttpException(500, 'Internal server error'));
+      next(error);
     }
   };
 
-  public async approveOrderRequest(req: Request, res: Response, next: NextFunction): Promise<void> {
+  public rejectOrderRequest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const { requestId } = req.params;
-      await this.orderRequestService.approveOrderRequest(Number(requestId));
-      res.sendStatus(200);
-    } catch (error) {
-      next(error);
-    }
-  }
+      const orderRequestId = Number(req.params.id);
+      const rejectOrderRequestData: OrderRequest = await this.orderRequestService.rejectOrderRequest(orderRequestId);
 
-  public async rejectOrderRequest(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-      const { requestId } = req.params;
-      await this.orderRequestService.rejectOrderRequest(Number(requestId));
-      res.sendStatus(200);
+      res.status(200).json({ data: rejectOrderRequestData, message: 'Order request rejected' });
     } catch (error) {
       next(error);
     }
-  }
+  };
+
+  public approveOrderRequest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const orderRequestId = Number(req.params.id);
+      const approveOrderRequestData: OrderRequest = await this.orderRequestService.approveOrderRequest(orderRequestId);
+
+      res.status(200).json({ data: approveOrderRequestData, message: 'Order request approved' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default OrderRequestController;

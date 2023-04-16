@@ -3,7 +3,7 @@ import AuthRoute from '@routes/auth.route';
 import IndexRoute from '@routes/index.route';
 import UsersRoute from '@routes/users.route';
 import OrdersRoute from '@/routes/orders.route';
-import OrderRequestRoute from './routes/orders.request.route';
+import OrderRequestRoute from '@/routes/orders.request.route';
 import validateEnv from '@utils/validateEnv';
 
 // Validate environment variables
