@@ -17,22 +17,32 @@ Messenger API is a TypeScript, TypeORM, MySQL, and Express API server for buildi
 
 
 
+## Features 🚚💬
 
-* TypeScript
-* TypeORM
-* Express
-* JWT authentication
-* Logging with Winston
-* API request validation with Class Validator
-* Swagger documentation with Swagger UI Express
-* Environment variables management with Dotenv and Envalid
-* CORS handling with Cors
-* HTTP security with Helmet and HPP
-* Compression with Compression
-* Hashing with Bcrypt
-* Continuous integration with Jest and linting with Eslint
-* Code formatting with Prettier
-* Automated deployment with PM2
+### Functional
+* Order placement: Customers can place orders for delivery via the Messenger platform.
+* Order tracking: Customers can track the status of their orders in real-time.
+* Rider management: Messenger can manage a pool of riders to fulfill delivery requests.
+* Rider assignment: Messenger can assign the most suitable rider for each delivery request based on factors such as location, availability, and rating.
+* Order distribution: Messenger can distribute delivery requests to riders via an efficient algorithm that optimizes for factors such as distance, traffic, and time.
+* Real-time communication: Riders and customers can communicate with each other in real-time via a chat interface integrated into the Messenger platform.
+* Third-party logistics integration: Messenger can integrate with third-party logistics providers to expand its delivery network and provide more delivery options to customers.
+
+### Technical
+* JWT authentication: The API is secured using JSON Web Token (JWT) authentication to ensure that only authorized users can access protected endpoints.
+* Logging with Winston: The API logs all requests and responses using Winston, a popular logging library for Node.js, to help with debugging and monitoring.
+* API request validation with Class Validator: Incoming requests are validated using Class Validator, a library that provides decorators to validate objects and properties based on predefined rules.
+* Swagger documentation with Swagger UI * Express: The API is documented using Swagger UI Express, a library that generates interactive documentation based on Swagger/OpenAPI specifications.
+* Environment variables management with Dotenv and Envalid: Environment variables are managed using Dotenv, a library that loads environment variables from a .env file, and Envalid, a library that validates environment variables and provides sensible defaults.
+* CORS handling with Cors: The API handles Cross-Origin Resource Sharing (CORS) using Cors, a library that allows for cross-origin requests from whitelisted domains.
+* HTTP security with Helmet and HPP: The API implements HTTP security best practices using Helmet, a library that adds security headers to HTTP responses, and HPP, a library that protects against HTTP Parameter Pollution attacks.
+* Compression with Compression: Responses are compressed using Compression, a library that reduces the size of responses to improve performance.
+* Hashing with Bcrypt: Passwords are hashed using Bcrypt, a library that provides secure one-way hashing of passwords to prevent them from being exposed in the event of a data breach.
+* Continuous integration with Jest and linting with Eslint: The API is continuously integrated using Jest, a testing framework for Node.js, to ensure that changes to the codebase do not introduce regressions. Code is also linted using Eslint to ensure adherence to a consistent code style.
+* Code formatting with Prettier: Code is formatted using Prettier, a code formatter that automatically formats code to a consistent style to reduce code review time.
+* Automated deployment with PM2: The API is deployed using PM2, a process manager for Node.js, to ensure high availability and automatic restart in the event of a crash or error.
+
+
 
 ## Installation 💻
 download the codebase and navigate into it.
