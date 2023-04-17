@@ -15,6 +15,9 @@ export class OrderRequestEntity extends BaseEntity implements OrderRequest {
   @ManyToOne(() => UserEntity, user => user.id)
   rider: UserEntity;
 
+  @Column()
+  orderId: number;
+
   @OneToOne(() => OrderEntity, order => order.orderRequest)
   @JoinColumn({ name: 'orderId' })
   order: OrderEntity;

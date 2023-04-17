@@ -10,7 +10,7 @@ export class OrderEntity extends BaseEntity implements Order {
   id: number;
 
   @Column()
-  customerId: number;
+  ownerId: number;
 
   @ManyToOne(() => UserEntity, user => user.id)
   owner: UserEntity;
