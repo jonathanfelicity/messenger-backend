@@ -72,12 +72,20 @@ Start the server in development mode.
 npm run dev
 ```
 
-Access the API documentation at http://localhost:3000/api/v1/docs in your browser.
+Access the [API documentation](http://localhost:3000/api/v1/docs) in your browser.
 
 ## Usage 🚀
-To use the API, you need to have an authenticated user. To authenticate a user, send a POST request to the api/v1/auth/login endpoint with the user's credentials in the request body. The API will return a JWT token that you can use to make requests to the protected endpoints.
+To use the API, you need to have an authenticated user. To authenticate a user, send a POST request to the `api/v1/auth/login `endpoint with the user's credentials in the request body. The API will return a JWT token that you can use to make requests to the protected endpoints.
 
 Refer to the Swagger documentation for the list of available endpoints and their usage.
+
+### 🛎 Available Commands for the Server
+
+- Run the Server in production mode : `npm run start` or `Start typescript-express-starter` in VS Code
+- Run the Server in development mode : `npm run dev` or `Dev typescript-express-starter` in VS Code
+- Run all unit-tests : `npm test` or `Test typescript-express-starter` in VS Code
+- Check for linting errors : `npm run lint` or `Lint typescript-express-starter` in VS Code
+- Fix for linting : `npm run lint:fix` or `Lint:Fix typescript-express-starter` in VS Code
 
 ## 🔑 STRIKING THE PERFECT BALANCE: Navigating API Design and Trade-offs ⚖️🚀
 
