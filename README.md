@@ -79,7 +79,13 @@ To use the API, you need to have an authenticated user. To authenticate a user, 
 
 Refer to the Swagger documentation for the list of available endpoints and their usage.
 
-## 🔑 STRIKING THE PERFECT BALANCE: Navigating API Design Trade-offs ⚖️🚀
+## 🔑 STRIKING THE PERFECT BALANCE: Navigating API Design and Trade-offs ⚖️🚀
+
+
+### Entity Relational Diagram
+<div align="center">
+  <img src="./ERDDiagram.jpg">
+</div>
 
 ```bash
 │
