@@ -88,6 +88,15 @@ Refer to the Swagger documentation for the list of available endpoints and their
 </div>
 
 
+* A UserEntity can have many OrderEntity instances associated with them, which represent the orders that the user has placed.
+* A UserEntity can also have many OrderRequestEntity instances associated with them, which represent the requests that the user has made to become a rider for an order.
+* An OrderEntity instance can have one OrderRequestEntity instance associated with it, which represents the request made by a rider to pick up and deliver the order.
+* A UserEntity can be either a Customer or a Rider, and can also have a ThirdParty role.
+* The relationships between the entities are defined using the ManyToOne, OneToOne, and JoinColumn decorators provided by the TypeORM library.
+
+
+The ER Diagram defines a data model for a system that manages orders placed by customers, and allows riders to request to pick up and deliver orders.
+
 
 ## Code Structure 📂
 ```bash
