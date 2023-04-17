@@ -62,9 +62,9 @@ cd messenger-api
 ```bash
 npm install
 ```
-Set the environment variables by creating a .env.development.local file in the root directory. You can use the .env.development.local.example file as a reference.
+Set the environment variables by checking `.env.development.local` update the configuration to match your development environment.
 
-Create a MySQL database and update the .env.development.local file with the database details.
+Create a MySQL database and update the `.env.development.local` file with the database details.
 
 Start the server in development mode.
 
