@@ -56,6 +56,19 @@ class UserService extends Repository<UserEntity> {
     await UserEntity.delete({ id: userId });
     return findUser;
   }
+
+  public async updateUserRole(userId: number, role: string): Promise<User> {
+    if (isEmpty(userId)) throw new HttpException(400, 'UserId is empty');
+    if (isEmpty(role)) throw new HttpException(400, 'Role is empty');
+
+    const findUser: User = await UserEntity.findOne({ where: { id: userId } });
+    if (!findUser) throw new HttpException(409, "User doesn't exist");
+
+    await UserEntity.update(userId, { role });
+
+    const updateUser: User = await UserEntity.findOne({ where: { id: userId } });
+    return updateUser;
+  }
 }
 
 export default UserService;

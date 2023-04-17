@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { CreateUserDto } from '@dtos/users.dto';
 import { User } from '@interfaces/users.interface';
 import userService from '@services/users.service';
+import { UserRoleEnum } from '@/enums/user.role.enum';
 
 class UsersController {
   public userService = new userService();
@@ -56,6 +57,18 @@ class UsersController {
       const deleteUserData: User = await this.userService.deleteUser(userId);
 
       res.status(200).json({ data: deleteUserData, message: 'deleted' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public updateUserRole = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const userId = Number(req.params.id);
+      const newRole: UserRoleEnum = req.body.role;
+      const updatedUserData: User = await this.userService.updateUserRole(userId, newRole);
+
+      res.status(200).json({ data: updatedUserData, message: 'user role updated' });
     } catch (error) {
       next(error);
     }

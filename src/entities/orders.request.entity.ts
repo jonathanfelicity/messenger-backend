@@ -2,7 +2,7 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, U
 import { OrderRequest } from '@/interfaces/orders.request.interface';
 import { UserEntity } from './users.entity';
 import { OrderEntity } from './orders.entity';
-import { OrderRequestEnum } from '@/enums/order.request.enum';
+import { OrderRequestStatusEnum } from '@/enums/order.request.status.enum';
 
 @Entity()
 export class OrderRequestEntity extends BaseEntity implements OrderRequest {
@@ -12,18 +12,16 @@ export class OrderRequestEntity extends BaseEntity implements OrderRequest {
   @Column()
   riderId: number;
 
-  @ManyToOne(() => UserEntity, user => user.id)
+  @ManyToOne(() => UserEntity, { eager: true })
+  @JoinColumn({ name: 'riderId' })
   rider: UserEntity;
 
-  @Column()
-  orderId: number;
-
-  @OneToOne(() => OrderEntity, order => order.orderRequest)
+  @OneToOne(() => OrderEntity, order => order.orderRequest, { eager: true })
   @JoinColumn({ name: 'orderId' })
   order: OrderEntity;
 
-  @Column({ type: 'enum', enum: OrderRequestEnum, default: OrderRequestEnum.Pending })
-  status: OrderRequestEnum;
+  @Column({ type: 'enum', enum: OrderRequestStatusEnum, default: OrderRequestStatusEnum.Pending })
+  status: OrderRequestStatusEnum;
 
   @Column()
   @CreateDateColumn()

@@ -12,6 +12,7 @@ class IndexRoute implements Routes {
   }
 
   private initializeRoutes() {
+    // Route to display the homepage
     this.router.get(`${this.path}`, this.indexController.index);
   }
 }

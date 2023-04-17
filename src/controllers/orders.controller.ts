@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Order } from '@interfaces/orders.interface';
-import OrderService from '@services/orders.service';
+import { OrderService } from '@/services/orders.service';
 import { CreateOrderDto } from '@/dtos/orders.dto';
 
 class OrdersController {
@@ -9,7 +9,7 @@ class OrdersController {
   public getOrders = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const findAllOrdersData: Order[] = await this.orderService.findAllOrders();
-
+      console.log(req.user.role);
       res.status(200).json({ data: findAllOrdersData, message: 'findAll' });
     } catch (error) {
       next(error);
@@ -63,7 +63,7 @@ class OrdersController {
 
   public updateOrderStatus = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const orderId = Number(req.params.orderId);
+      const orderId = Number(req.params.id);
       const { status } = req.body;
       const updateOrderData: Order = await this.orderService.updateOrderStatus(orderId, status);
 

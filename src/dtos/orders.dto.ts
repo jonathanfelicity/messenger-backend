@@ -2,10 +2,10 @@ import { IsNumber, IsString } from 'class-validator';
 
 export class CreateOrderDto {
   @IsNumber()
-  public customerId: number;
+  public ownerId: number;
 
-  @IsNumber()
-  public riderId: number;
+  // @IsNumber()
+  // public riderId: number;
 
   @IsString()
   public pickupAddress: string;

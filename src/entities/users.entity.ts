@@ -1,16 +1,14 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, Unique } from 'typeorm';
 import { User } from '@interfaces/users.interface';
+import { BaseEntityWithTimestamps } from './bewt.entity';
 import { UserRoleEnum } from '@/enums/user.role.enum';
 import { IsNotEmpty } from 'class-validator';
 
 @Entity()
-export class UserEntity extends BaseEntity implements User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+@Unique(['email'])
+export class UserEntity extends BaseEntityWithTimestamps implements User {
   @Column()
   @IsNotEmpty()
-  @Unique(['email'])
   email: string;
 
   @Column()
@@ -19,12 +17,4 @@ export class UserEntity extends BaseEntity implements User {
 
   @Column({ type: 'enum', enum: UserRoleEnum, default: UserRoleEnum.Customer })
   role: UserRoleEnum;
-
-  @Column()
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @Column()
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

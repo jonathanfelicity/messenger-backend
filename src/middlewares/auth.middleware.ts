@@ -11,11 +11,11 @@ const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFun
 
     if (Authorization) {
       const secretKey: string = SECRET_KEY;
-      const { id } = (await verify(Authorization, secretKey)) as DataStoredInToken;
+      const { id, role } = (await verify(Authorization, secretKey)) as DataStoredInToken;
       const findUser = await UserEntity.findOne(id, { select: ['id', 'email', 'password'] });
 
       if (findUser) {
-        req.user = findUser;
+        req.user = { ...findUser, role };
         next();
       } else {
         next(new HttpException(401, 'Wrong authentication token'));

@@ -1,14 +1,11 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToOne } from 'typeorm';
+import { Entity, Column, ManyToOne } from 'typeorm';
 import { Order } from '@interfaces/orders.interface';
+import { BaseEntityWithTimestamps } from './bewt.entity';
 import { UserEntity } from './users.entity';
 import { OrderStatusEnum } from '@/enums/order.status.enum';
-import { OrderRequestEntity } from './orders.request.entity';
 
 @Entity()
-export class OrderEntity extends BaseEntity implements Order {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class OrderEntity extends BaseEntityWithTimestamps implements Order {
   @Column()
   ownerId: number;
 
@@ -24,17 +21,6 @@ export class OrderEntity extends BaseEntity implements Order {
   @Column()
   totalAmount: number;
 
-  @OneToOne(() => OrderRequestEntity, orderRequest => orderRequest.order)
-  orderRequest: OrderRequestEntity[];
-
   @Column({ type: 'enum', enum: OrderStatusEnum, default: OrderStatusEnum.Pending })
   status: OrderStatusEnum;
-
-  @Column()
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @Column()
-  @UpdateDateColumn()
-  updatedAt: Date;
 }
