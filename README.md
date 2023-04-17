@@ -82,11 +82,14 @@ Refer to the Swagger documentation for the list of available endpoints and their
 ## 🔑 STRIKING THE PERFECT BALANCE: Navigating API Design and Trade-offs ⚖️🚀
 
 
-### Entity Relational Diagram
+### Entity Relational Diagram 🔺📊
 <div align="center">
   <img src="./ERDDiagram.jpg">
 </div>
 
+
+
+## Code Structure 📂
 ```bash
 │
 ├──📂 src
