@@ -4,7 +4,7 @@ import { CreateOrderDto } from '@dtos/orders.dto';
 import { Routes } from '@interfaces/routes.interface';
 import validationMiddleware from '@middlewares/validation.middleware';
 import authMiddleware from '@/middlewares/auth.middleware';
-import checkUserRole from '@/middlewares/role.middleware';
+// import checkUserRole from '@/middlewares/role.middleware';
 
 class OrdersRoute implements Routes {
   public path = '/orders';
@@ -57,7 +57,7 @@ class OrdersRoute implements Routes {
     this.router.put(
       `${this.path}/:id(\\d+)/status`,
       authMiddleware, // requires authentication
-      checkUserRole,
+      // checkUserRole,
       this.ordersController.updateOrderStatus, // handles the request
     );
   }

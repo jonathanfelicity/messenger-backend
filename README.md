@@ -182,10 +182,10 @@ The ER Diagram defines a data model for a system that manages orders placed by c
 | One of the advantages of using the MVCS pattern is that it provides a clear separation of concerns between the different layers of the application. This can make the codebase more modular and easier to maintain over time      | However, the additional layer of the Service can add complexity to the application, making it harder to understand and debug.     |
 | MySQL as the database can provide fast and reliable data access, but it requires more setup and configuration than other databases, such as MongoDB or SQLite.           | MySQL is a relational database, which means that it requires a predefined schema. This can make it less flexible than other databases, which allow for dynamic schemas.         |
 | Swagger for documentation can help to make the API more accessible and understandable to other developers. It provides a standardized format for describing API endpoints, parameters, and responses.  | However, creating and maintaining Swagger documentation can be time-consuming and may require additional work to keep it up to date with changes to the API. |
-<!-- | Install Package  | 📦 Install Package |
-| Fix Readme       | 📚 Fix Readme      |
-| Update Version   | 🌼 Update Version  |
-| New Template     | 🎉 New Template    | -->
+
 
 
 Overall, the decision to use the MVCS pattern, MySQL as the database, and Swagger for documentation involves trade-offs between flexibility, maintainability, and ease of use. By carefully considering these trade-offs and making informed decisions, developers can create a well-designed and scalable REST API that meets the needs of their users.
+
+
+

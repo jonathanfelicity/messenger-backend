@@ -1,12 +1,13 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateOrderRequestDto {
   @IsNotEmpty()
   public orderId: number;
 
-  @IsNotEmpty()
-  public customerId: number;
+  @IsNumber()
+  public riderId: number;
 
   @IsNumber()
-  public riderId?: number;
+  @IsOptional()
+  public status: number;
 }
